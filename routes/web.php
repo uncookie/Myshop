@@ -12,9 +12,12 @@
  */
 
 Route::get('/', function () {
-    $name = 'una ';
-    $say  = 'Hello,';
-    return view('welcome', compact('name', 'say'));
+    return view('product.index');
+
+});
+
+Route::get('/product', function () {
+    return view('product.index');
 
 });
 

@@ -71,7 +71,7 @@ class ProductController extends AdminController
         $form = new Form(new Product);
 
         $form->text('title', __('Title'))->rules('required');
-        $form->textarea('description', __('Description'))->rules('required');
+        $form->ckeditor('description', __('Description'))->rules('required');
         $form->image('image', __('Image'))->rules('required');
         $form->switch('on_sale', __('On sale'))->default(1);
         $form->number('price', __('Price'))->rules('required');
