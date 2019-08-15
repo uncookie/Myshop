@@ -1,22 +1,22 @@
 @extends('layouts.app')
 
 @section('content')
-<h1>商品一覽</h1>
+<h2>商品一覽</h2>
 <div class="card-deck">
     @forelse($products as $product)
     <div class="card mb-4">
-        <a href="product/{{ $product->id }}"target="_blank">
+        <a href="product/{{ $product->id }}" target="_blank">
             <img src="{{ $product->image_url }}" class="card-img-top" alt="{{ $product->title }}">
         </a>
         <div class="card-body">
-        
-        <a href="product/{{ $product->id }}" target="_blank">
-            <h5 class="card-title">{{ $product->title }}</h5>
-        </a>    
+
+            <a href="product/{{ $product->id }}" target="_blank">
+                <h5 class="card-title">{{ $product->title }}</h5>
+            </a>
         </div>
         <div class="card-footer text-center">
             ${{ $product->price }}
-            <a href="#" class="btn btn-primary">加入購物車</a>
+            <button class="btn btn-primary btn-add-to-cart" data-id="{{ $product->id }}">加入購物車</button>
         </div>
     </div>
     @if($loop->iteration % 2 == 0)
@@ -47,11 +47,20 @@
     </div>
     @endforelse
 </div>
+<input type="hidden" name="amount" value="1">
+@endsection
+
+@section('scriptsAfterJs')
+    <script>
+        $(document).ready(function () {
+            @include('product.add2cart')
+        });
+    </script>
 @endsection
 
 @section('my_menu')
 <li class="nav-item">
     @parent
-    <a class="nav-link" href="/home">回控制台</a>
+    <a class="nav-link" href="/cart">我的購物車</a>
 </li>
 @endsection
